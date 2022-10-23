@@ -12,6 +12,16 @@ const uploadImage = async (req, res, next) => {
   }
 }
 
+const getImage = async (req, res, next) => {
+  try {
+    const image = await uploadService.getImage(req.params.name);
+    res.status(200).send(image);
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   uploadImage,
+  getImage,
 }

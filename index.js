@@ -16,7 +16,7 @@ app.use(cors())
 
 app.use('/user', userRouter)
 app.use('/login', loginRouter)
-app.use('/upload', uploadRouter)
+app.use('/image', uploadRouter)
 
 app.get('/', (req, res) => res.send('API working'))
 

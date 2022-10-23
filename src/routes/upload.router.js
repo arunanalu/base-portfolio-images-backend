@@ -3,6 +3,8 @@ const uploadRouter = express.Router();
 const authMiddleware = require('../middlewares/authMiddleware');
 const uploadController = require('../controller/upload.controller');
 
-uploadRouter.post('/image', authMiddleware, uploadController.uploadImage);
+uploadRouter.post('/', authMiddleware, uploadController.uploadImage);
+
+uploadRouter.get('/:name', uploadController.getImage);
 
 module.exports = uploadRouter;

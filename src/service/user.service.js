@@ -1,32 +1,34 @@
-const User = require("../models/User");
+const users = require("../models/detaConnection");
+const User = require("../models/user");
 const { cryptHashMd5 } = require("../utils/functions");
 
 
 const createUser = async (name, password) => {
   const encryptedPassword = cryptHashMd5(password);
-  const { id } = await User.create({ name, password: encryptedPassword });
-  return { 
-    id,
-    name,
+  await users.put({ name, password: encryptedPassword });
+  return `Usuario ${name} criado com sucesso!`;
+}
+
+const deleteUser = async (id) => {
+  await users.delete(id);
+}
+
+const getUserByName = async (name) => {
+  const { items: user } = await users.fetch({"name": name});
+  if (user.length === 0) {
+    return null;
   }
+  return user[0];
 }
 
 const updateUser = async (id, name, password) => {
   const encryptedPassword = cryptHashMd5(password);
-  const user = await User.findByIdAndUpdate(id, { name, password: encryptedPassword }, { new: true });
-  return {
-    id: user.id,
-    name: user.name,
-  }
-}
-
-const getUser = async (id) => {
-  const user = await User.findById(id);
-  return user
+  await users.put({ name, password: encryptedPassword }, id);
 }
 
 module.exports = {
   createUser,
   updateUser,
-  getUser,
+  getUserByName,
+  deleteUser,
 }

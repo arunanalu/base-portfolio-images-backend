@@ -13,9 +13,9 @@ const createUser = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
   try {
     const { name, password } = req.body;
-    const { id } = req.user;
-    const user = await userService.updateUser(id, name, password);
-    res.status(200).json(user);
+    const { id } = req.user
+    await userService.updateUser(id, name, password);
+    res.status(201).json({ message: 'Usuario atualizado com sucesso!' });
   } catch (err) {
     next(err);
   }

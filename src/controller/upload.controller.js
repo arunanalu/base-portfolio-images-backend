@@ -44,9 +44,21 @@ const getAllImagesInfo = async (_req, res, next) => {
   }
 }
 
+const updateImageInfo = async (req, res, next) => {
+  try {
+    const { name } = req.params;
+    const { description } = req.body;
+    await uploadService.updateImageInfo(name, description);
+    res.status(200).json({ message: 'Descrição da imagem atualizada com sucesso!' });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   uploadImage,
   getImage,
   deleteImage,
   getAllImagesInfo,
+  updateImageInfo,
 }

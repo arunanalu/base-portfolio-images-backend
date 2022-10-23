@@ -26,9 +26,14 @@ const getAllImagesInfo = async () => {
   return allItems;
 }
 
+const updateImageInfo = async (name, description) => {
+  await dataImages.put({ description }, name);
+}
+
 module.exports = {
   uploadImage,
   getImage,
   deleteImage,
   getAllImagesInfo,
+  updateImageInfo
 }

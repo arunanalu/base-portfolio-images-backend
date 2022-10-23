@@ -6,4 +6,9 @@ const deta = Deta(process.env.PROJECT_KEY);
 
 const users = deta.Base('users'); 
 
-module.exports = users;
+const images = deta.Drive('images')
+
+module.exports = {
+  users,
+  images,
+}

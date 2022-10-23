@@ -10,7 +10,11 @@ const loginService = async (name, password) => {
     throw errorConstructor(404, 'Usuário não encontrado ou senha incorreta');
   }
   const { id: foundUserId, name: foundUserName } = foundUser;
-  const token = generateToken({ foundUserId, foundUserName });
+  const tokenObj = {
+    id: foundUserId,
+    name: foundUserName,
+  }
+  const token = generateToken(tokenObj);
   return { token, name };
 };
 

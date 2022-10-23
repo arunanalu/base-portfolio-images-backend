@@ -4,8 +4,8 @@ const uploadImage = async (req, res, next) => {
   try {
     const contents = req.files.image.data;
     const fileName = req.files.image.name;
-    // const name = req.body.description;
-    await uploadService.uploadImage(contents, fileName);
+    const description = req.body.description;
+    await uploadService.uploadImage(contents, fileName, description);
     res.status(201).json({ message: 'Imagem salva com sucesso!' });
   } catch (error) {
     next(error);
@@ -35,8 +35,18 @@ const deleteImage = async (req, res, next) => {
   }
 }
 
+const getAllImagesInfo = async (_req, res, next) => {
+  try {
+    const allImages = await uploadService.getAllImagesInfo();
+    res.status(200).json(allImages);
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   uploadImage,
   getImage,
   deleteImage,
+  getAllImagesInfo,
 }

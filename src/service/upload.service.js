@@ -1,6 +1,7 @@
-const { images } = require("../models/detaConnection")
+const { images, dataImages } = require("../models/detaConnection")
 
-const uploadImage = async (contents, name) => {
+const uploadImage = async (contents, name, description) => {
+  await dataImages.put({ description }, name)
   await images.put(name, { data: contents });
 }
 
@@ -11,11 +12,23 @@ const getImage = async (name) => {
 }
 
 const deleteImage = async (name) => {
+  await dataImages.delete(name);
   await images.delete(name);
+}
+
+const getAllImagesInfo = async () => {
+  let res = await dataImages.fetch();
+  let allItems = res.items;
+  while (res.last) {
+    res = await dataImages.fetch({}, {last: res.last});
+    allItems = allItems.concat(res.items);
+  }
+  return allItems;
 }
 
 module.exports = {
   uploadImage,
   getImage,
   deleteImage,
+  getAllImagesInfo,
 }

@@ -7,4 +7,6 @@ uploadRouter.post('/', authMiddleware, uploadController.uploadImage);
 
 uploadRouter.get('/:name', uploadController.getImage);
 
+uploadRouter.delete('/:name', authMiddleware, uploadController.deleteImage);
+
 module.exports = uploadRouter;

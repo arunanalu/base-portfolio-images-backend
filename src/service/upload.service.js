@@ -10,7 +10,12 @@ const getImage = async (name) => {
   return Buffer.from(buffer);
 }
 
+const deleteImage = async (name) => {
+  await images.delete(name);
+}
+
 module.exports = {
   uploadImage,
   getImage,
+  deleteImage,
 }

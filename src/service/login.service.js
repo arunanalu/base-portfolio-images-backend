@@ -1,5 +1,3 @@
-const users = require("../models/detaConnection");
-const User = require("../models/user");
 const { errorConstructor, cryptHashMd5 } = require("../utils/functions");
 const { generateToken } = require("./auth.service");
 const { getUserByName } = require("./user.service");

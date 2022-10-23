@@ -1,6 +1,8 @@
+require('dotenv').config();
+
 const { Deta } = require('deta');
 
-const deta = Deta('e07bt6oy_JYV1TZv97veVquSc6f3DLbMQoQAkZqdb');
+const deta = Deta(process.env.PROJECT_KEY);
 
 const users = deta.Base('users'); 
 

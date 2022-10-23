@@ -1,5 +1,4 @@
 const users = require("../models/detaConnection");
-const User = require("../models/user");
 const { cryptHashMd5 } = require("../utils/functions");
 
 

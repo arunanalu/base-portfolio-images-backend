@@ -8,7 +8,7 @@ module.exports = async (req, _res, next) => {
     if (!authorization) { throw errorConstructor(404, 'Está faltando o token'); }
 
     const user = verifyToken(authorization);
-    if (!user) throw errorConstructor(404, 'Token expirado ou inválido');
+    if (!user) throw errorConstructor(401, 'Token expirado ou inválido');
     req.user = user;
     next();
   } catch (error) {

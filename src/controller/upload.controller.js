@@ -15,7 +15,9 @@ const uploadImage = async (req, res, next) => {
 const getImage = async (req, res, next) => {
   try {
     const image = await uploadService.getImage(req.params.name);
-    res.status(200).send(image);
+    res.writeHead(200, {
+      'Media-Type': ' application/octet-stream'
+    }).end(image)
   } catch (error) {
     next(error);
   }

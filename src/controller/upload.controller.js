@@ -5,7 +5,6 @@ const uploadImage = async (req, res, next) => {
     const contents = req.files.image.data;
     const fileName = req.files.image.name;
     const description = req.body.description;
-    console.log(contents);
     await uploadService.uploadImage(contents, fileName, description);
     res.status(201).json({ message: 'Imagem salva com sucesso!' });
   } catch (error) {
@@ -16,10 +15,6 @@ const uploadImage = async (req, res, next) => {
 const getImage = async (req, res, next) => {
   try {
     const image = await uploadService.getImage(req.params.name);
-    // res.writeHead(200, {
-    //   'Content-Type': 'image/jpeg',
-    //   'Content-Length': image.length
-    // }).end(image);
     res.status(200).send(image);
   } catch (error) {
     next(error);

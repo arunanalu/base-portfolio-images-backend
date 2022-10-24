@@ -8,7 +8,8 @@ const uploadImage = async (contents, name, description) => {
 const getImage = async (name) => {
   const image = await images.get(name);
   const buffer = await image.arrayBuffer();
-  return Buffer.from(buffer);
+  const result = Buffer.from(buffer);
+  return result
 }
 
 const deleteImage = async (name) => {

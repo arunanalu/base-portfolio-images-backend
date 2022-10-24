@@ -9,10 +9,10 @@ const uploadRouter = require('./src/routes/upload.router');
 const app = express()
 const port = 3000 || process.env.PORT
 
-app.use(upload());
 app.use(express.static('public'))
 app.use(express.json())
 app.use(cors())
+app.use(upload());
 
 app.use('/user', userRouter)
 app.use('/login', loginRouter)
